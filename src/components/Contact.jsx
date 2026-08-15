@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { personalInfo, formConfig } from '../data/portfolio';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import GithubIcon from './GithubIcon';
 import { MessageSquare, Mail, Send, CheckCircle2, AlertCircle, Phone, MapPin } from 'lucide-react';
 
 export default function Contact() {
+  const [sectionRef, isVisible] = useScrollReveal({ threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,19 +46,16 @@ export default function Contact() {
           setStatus({ submitting: false, submitted: true, error: null });
           setFormData({ name: '', email: '', subject: '', message: '' });
         } else {
-          // Fallback user feedback
           setStatus({ submitting: false, submitted: true, error: null });
           setFormData({ name: '', email: '', subject: '', message: '' });
         }
       } else {
-        // Fallback local simulation
         setTimeout(() => {
           setStatus({ submitting: false, submitted: true, error: null });
           setFormData({ name: '', email: '', subject: '', message: '' });
         }, 800);
       }
     } catch (err) {
-      // FormSubmit redirect fallback handling
       setStatus({ submitting: false, submitted: true, error: null });
       setFormData({ name: '', email: '', subject: '', message: '' });
     }
@@ -65,11 +64,11 @@ export default function Contact() {
   const whatsappUrl = `https://wa.me/${personalInfo.whatsappNumber}?text=${encodeURIComponent(personalInfo.whatsappMessage)}`;
 
   return (
-    <section id="contact" className="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
+    <section id="contact" ref={sectionRef} className="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className={`text-center max-w-3xl mx-auto mb-16 reveal-item ${isVisible ? 'is-revealed' : ''}`}>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Let's Work Together
           </h2>
@@ -87,20 +86,23 @@ export default function Contact() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-emerald-400 dark:hover:border-emerald-600 transition-all text-left group"
+            style={{ transitionDelay: '150ms' }}
+            className={`p-6.5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover-effect text-left group reveal-item ${
+              isVisible ? 'is-revealed' : ''
+            }`}
           >
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-xs">
               <MessageSquare className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+            <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
               WhatsApp
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">
               Direct Instant Messaging
             </p>
-            <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mt-3 flex items-center justify-between">
+            <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-3.5 flex items-center justify-between">
               <span>{personalInfo.phone}</span>
-              <span className="text-xs font-bold bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded text-emerald-700 dark:text-emerald-300">
+              <span className="text-[11px] font-extrabold bg-emerald-100 dark:bg-emerald-950 px-2.5 py-0.5 rounded-full text-emerald-700 dark:text-emerald-300">
                 Chat Now
               </span>
             </div>
@@ -109,18 +111,21 @@ export default function Contact() {
           {/* Email */}
           <a
             href={`mailto:${personalInfo.email}`}
-            className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-400 dark:hover:border-sky-600 transition-all text-left group"
+            style={{ transitionDelay: '250ms' }}
+            className={`p-6.5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover-effect text-left group reveal-item ${
+              isVisible ? 'is-revealed' : ''
+            }`}
           >
-            <div className="w-12 h-12 rounded-2xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 rounded-2xl bg-sky-50 dark:bg-sky-950/70 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-xs">
               <Mail className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+            <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
               Email
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">
               Official Email Address
             </p>
-            <div className="text-sm font-semibold text-sky-600 dark:text-sky-400 mt-3 truncate">
+            <div className="text-sm font-bold text-sky-600 dark:text-sky-400 mt-3.5 truncate">
               {personalInfo.email}
             </div>
           </a>
@@ -130,18 +135,21 @@ export default function Contact() {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-slate-400 dark:hover:border-slate-600 transition-all text-left group"
+            style={{ transitionDelay: '350ms' }}
+            className={`p-6.5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover-effect text-left group reveal-item ${
+              isVisible ? 'is-revealed' : ''
+            }`}
           >
-            <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-xs">
               <GithubIcon className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+            <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
               GitHub
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">
               Codebase & Repositories
             </p>
-            <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-3 flex items-center justify-between">
+            <div className="text-sm font-bold text-slate-700 dark:text-slate-300 mt-3.5 flex items-center justify-between">
               <span>@ihilalmuhammad</span>
               <span className="text-xs text-sky-600 dark:text-sky-400 font-bold">View Profile</span>
             </div>
@@ -150,17 +158,22 @@ export default function Contact() {
         </div>
 
         {/* Contact Form Container */}
-        <div className="max-w-3xl mx-auto rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 shadow-lg text-left">
+        <div 
+          style={{ transitionDelay: '450ms' }}
+          className={`max-w-3xl mx-auto rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 shadow-lg text-left reveal-item ${
+            isVisible ? 'is-revealed' : ''
+          }`}
+        >
           
           <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
             <MapPin className="w-5 h-5 text-sky-500 shrink-0" />
-            <span className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300">
+            <span className="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300">
               Location: <strong>{personalInfo.location}</strong>
             </span>
           </div>
 
           {status.submitted && (
-            <div className="mb-6 p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200 flex items-center space-x-3 text-sm">
+            <div className="mb-6 p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200 flex items-center space-x-3 text-sm font-medium">
               <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
               <span>Thank you! Your message has been sent successfully. Hilal will respond shortly.</span>
             </div>
@@ -169,7 +182,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+                <label htmlFor="name" className="block text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
                   Your Name
                 </label>
                 <input
@@ -185,7 +198,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+                <label htmlFor="email" className="block text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
                   Your Email
                 </label>
                 <input
@@ -202,7 +215,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+              <label htmlFor="subject" className="block text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
                 Subject
               </label>
               <input
@@ -218,7 +231,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+              <label htmlFor="message" className="block text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
                 Message
               </label>
               <textarea
@@ -236,7 +249,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status.submitting}
-              className="w-full py-4 rounded-2xl bg-sky-600 hover:bg-sky-700 disabled:bg-sky-400 text-white font-bold text-base shadow-lg shadow-sky-600/20 transition-all flex items-center justify-center space-x-2"
+              className="w-full py-4 rounded-2xl bg-sky-600 hover:bg-sky-500 disabled:bg-sky-400 text-white font-bold text-base shadow-lg shadow-sky-600/25 transition-all flex items-center justify-center space-x-2 hover:scale-[1.01] active:scale-[0.99]"
             >
               <Send className="w-5 h-5" />
               <span>{status.submitting ? 'Sending Message...' : 'Send Message'}</span>

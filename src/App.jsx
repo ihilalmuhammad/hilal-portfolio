@@ -9,10 +9,12 @@ import Opportunities from './components/Opportunities';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AnimatedBackground from './components/AnimatedBackground';
+import CustomCursor from './components/CustomCursor';
+import ScrollProgress from './components/ScrollProgress';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    // Check local storage or system preference
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) {
@@ -34,9 +36,19 @@ export default function App() {
   }, [darkMode]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 antialiased selection:bg-sky-500 selection:text-white">
+    <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 antialiased selection:bg-sky-500 selection:text-white overflow-x-hidden">
+      {/* Top Ultra-Thin Scroll Progress Bar */}
+      <ScrollProgress />
+
+      {/* Multi-Layered Parallax Background */}
+      <AnimatedBackground />
+
+      {/* Interactive Ball-Style Cursor Follower */}
+      <CustomCursor />
+
+      {/* Main UI Header & Content */}
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <About />
         <Skills />

@@ -54,22 +54,22 @@ export default function Navbar({ darkMode, setDarkMode }) {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Brand Logo */}
           <a
             href="#home"
-            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-xl p-1"
+            className="flex min-w-0 items-center space-x-2 sm:space-x-3 group focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-xl p-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 via-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-tr from-sky-600 via-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform duration-300">
               <Smartphone className="w-5 h-5" />
             </div>
-            <div className="flex flex-col text-left">
-              <span className="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+            <div className="min-w-0 flex flex-col text-left">
+              <span className="truncate font-extrabold text-sm sm:text-lg tracking-tight text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
                 HILAL MUHAMMAD
               </span>
-              <span className="text-[10px] font-bold tracking-widest text-sky-600 dark:text-sky-400 uppercase -mt-0.5">
+              <span className="hidden sm:block text-[10px] font-bold tracking-widest text-sky-600 dark:text-sky-400 uppercase -mt-0.5">
                 Flutter Developer
               </span>
             </div>

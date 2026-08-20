@@ -43,7 +43,7 @@ export default function Hero() {
           <div className="lg:col-span-7 space-y-6 text-left">
             
             {/* Sequence 1: Availability Badge (0ms delay) */}
-            <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-sky-50 dark:bg-sky-950/70 border border-sky-200/80 dark:border-sky-800/80 text-sky-700 dark:text-sky-300 text-xs font-bold tracking-wide shadow-sm animate-fade-in">
+            <div className="inline-flex max-w-full items-center space-x-2 px-3 sm:px-4 py-2 rounded-full bg-sky-50 dark:bg-sky-950/70 border border-sky-200/80 dark:border-sky-800/80 text-sky-700 dark:text-sky-300 text-center sm:text-left text-xs font-bold leading-relaxed tracking-wide shadow-sm animate-fade-in">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
@@ -53,7 +53,7 @@ export default function Hero() {
 
             {/* Sequence 2: Main Heading "Hi, I'm Hilal Muhammad" (100ms delay) */}
             <div className="space-y-2 animate-fade-in" style={{ animationDelay: '100ms' }}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold break-words tracking-tight text-slate-900 dark:text-white leading-[1.15]">
                 Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 dark:from-sky-400 dark:via-blue-400 dark:to-indigo-400">Hilal Muhammad</span>
               </h1>
             </div>
@@ -73,10 +73,10 @@ export default function Hero() {
             </p>
 
             {/* Sequence 5: Main CTA Buttons (400ms delay) */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2 animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2 animate-fade-in" style={{ animationDelay: '400ms' }}>
               <a
                 href="#projects"
-                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-lg shadow-sky-600/25 transition-all hover:scale-[1.03] active:scale-[0.97]"
+                className="w-full sm:w-auto justify-center inline-flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-lg shadow-sky-600/25 transition-all hover:scale-[1.03] active:scale-[0.97]"
               >
                 <FolderGit2 className="w-4.5 h-4.5" />
                 <span>View My Projects</span>
@@ -85,7 +85,7 @@ export default function Hero() {
               <a
                 href={personalInfo.cvPath}
                 download="Hilal-Muhammad-CV.pdf"
-                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold text-sm shadow-md transition-all hover:scale-[1.03] active:scale-[0.97]"
+                className="w-full sm:w-auto justify-center inline-flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold text-sm shadow-md transition-all hover:scale-[1.03] active:scale-[0.97]"
               >
                 <FileText className="w-4.5 h-4.5 text-sky-400" />
                 <span>Download CV</span>
@@ -93,7 +93,7 @@ export default function Hero() {
 
               <a
                 href="#contact"
-                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-bold text-sm transition-all hover:scale-[1.03] active:scale-[0.97]"
+                className="w-full sm:w-auto justify-center inline-flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 font-bold text-sm transition-all hover:scale-[1.03] active:scale-[0.97]"
               >
                 <Mail className="w-4.5 h-4.5 text-slate-600 dark:text-slate-400" />
                 <span>Contact Me</span>
